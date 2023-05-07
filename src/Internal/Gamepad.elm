@@ -4,7 +4,7 @@ module Internal.Gamepad exposing (..)
 -}
 
 import Internal.Button as Button exposing (Button)
-import Internal.Joystick as JoyStick exposing (JoyStick)
+import Internal.Joystick as Joystick exposing (Joystick)
 import Json.Decode as D
 
 
@@ -16,7 +16,7 @@ type Gamepad
         { buttons : List Button
         , connected : Bool
         , gamepadId : String
-        , joysticks : List JoyStick
+        , joysticks : List Joystick
         }
 
 
@@ -47,10 +47,10 @@ buttons (Gamepad data) =
 
 {-| Get a joystick based on its index.
 -}
-getJoyStick : Int -> Gamepad -> JoyStick
-getJoyStick i (Gamepad data) =
+getJoystick : Int -> Gamepad -> Joystick
+getJoystick i (Gamepad data) =
     let
-        getIndex : Int -> List JoyStick -> Maybe JoyStick
+        getIndex : Int -> List Joystick -> Maybe Joystick
         getIndex j sticks =
             case sticks of
                 [] ->
@@ -63,7 +63,7 @@ getJoyStick i (Gamepad data) =
                     else
                         getIndex (j - 1) tail
     in
-    getIndex i data.joysticks |> Maybe.withDefault JoyStick.empty
+    getIndex i data.joysticks |> Maybe.withDefault Joystick.empty
 
 
 {-| Get a numbered button based on its index.
@@ -123,7 +123,7 @@ gamepadDecoder =
                             (D.field "id" D.string)
                             (D.list D.float
                                 |> D.field "axes"
-                                |> D.map JoyStick.fromAxes
+                                |> D.map Joystick.fromAxes
                             )
                 )
         ]

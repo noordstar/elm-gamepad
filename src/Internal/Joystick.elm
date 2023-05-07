@@ -1,4 +1,4 @@
-module Internal.Joystick exposing (JoyStick, abs, direction, directionRad, empty, fromAxes, toXY)
+module Internal.Joystick exposing (Joystick, abs, direction, directionRad, empty, fromAxes, toXY)
 
 {-| A joystick is a little button that players can use for more precise directions.
 -}
@@ -6,24 +6,24 @@ module Internal.Joystick exposing (JoyStick, abs, direction, directionRad, empty
 
 {-| The joystick type.
 -}
-type JoyStick
-    = JoyStick { x : Float, y : Float }
+type Joystick
+    = Joystick { x : Float, y : Float }
 
 
 {-| An empty joystick.
 -}
-empty : JoyStick
+empty : Joystick
 empty =
-    JoyStick { x = 0, y = 0 }
+    Joystick { x = 0, y = 0 }
 
 
 {-| Map a list of axes into a list of joysticks
 -}
-fromAxes : List Float -> List JoyStick
+fromAxes : List Float -> List Joystick
 fromAxes axes =
     case axes of
         x :: y :: rest ->
-            JoyStick { x = x, y = y } :: fromAxes rest
+            Joystick { x = x, y = y } :: fromAxes rest
 
         _ ->
             []
@@ -34,16 +34,16 @@ fromAxes axes =
 Keep in mind that this is not always 0, especially for older devices who might have a tiny drift.
 
 -}
-abs : JoyStick -> Float
-abs (JoyStick { x, y }) =
+abs : Joystick -> Float
+abs (Joystick { x, y }) =
     max (Basics.abs x) (Basics.abs y)
 
 
 {-| Starting from the top, get a direction in terms of degress,
 starting at 0 from the top and going to 360 clockwise.
 -}
-direction : JoyStick -> Int
-direction (JoyStick { x, y }) =
+direction : Joystick -> Int
+direction (Joystick { x, y }) =
     atan2 y x
         |> (*) -180
         |> (/) pi
@@ -53,8 +53,8 @@ direction (JoyStick { x, y }) =
 
 {-| Same as direction, except the value is now a number between 0 and 1.
 -}
-directionRad : JoyStick -> Float
-directionRad (JoyStick { x, y }) =
+directionRad : Joystick -> Float
+directionRad (Joystick { x, y }) =
     let
         tau : Float
         tau =
@@ -74,6 +74,6 @@ The coordinates are defined as is starting from the top left, so:
   - Bottom means positive y
 
 -}
-toXY : JoyStick -> { x : Float, y : Float }
-toXY (JoyStick data) =
+toXY : Joystick -> { x : Float, y : Float }
+toXY (Joystick data) =
     data

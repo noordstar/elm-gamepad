@@ -1,11 +1,11 @@
 module Gamepad.Joystick exposing
-    ( Joystick
+    ( Joystick, left, right
     , abs, direction, directionRad, toXY
     )
 
 {-| This module is about showing joysticks.
 
-@docs Joystick
+@docs Joystick, left, right
 
 The joystick's value can be read in multiple ways that might suit your needs.
 
@@ -13,13 +13,30 @@ The joystick's value can be read in multiple ways that might suit your needs.
 
 -}
 
+import Internal.Gamepad exposing (Gamepad)
 import Internal.Joystick
 
 
 {-| A joystick is a representation of a stick that can move in all directions.
 -}
 type alias Joystick =
-    Internal.Joystick.JoyStick
+    Internal.Joystick.Joystick
+
+
+{-| Get the joystick that usually resides on the left of the controller.
+This is considered the primary joystick on the controller.
+-}
+left : Gamepad -> Joystick
+left =
+    Internal.Gamepad.getJoystick 0
+
+
+{-| Get the joystick that usually resides on the right of the controller.
+This is considered the secondary joystick on the controller.
+-}
+right : Gamepad -> Joystick
+right =
+    Internal.Gamepad.getJoystick 1
 
 
 {-| On a scale from 0 to 1, return how intensely the button is being pushed.
