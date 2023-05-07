@@ -45,6 +45,13 @@ buttons (Gamepad data) =
     data.buttons
 
 
+{-| Get all connected joysticks.
+-}
+joysticks : Gamepad -> List Joystick
+joysticks (Gamepad data) =
+    data.joysticks
+
+
 {-| Get a joystick based on its index.
 -}
 getJoystick : Int -> Gamepad -> Joystick

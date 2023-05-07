@@ -1,6 +1,6 @@
 module Gamepad exposing
     ( Gamepad, decoder, connected
-    , buttons, getButton, getJoystick
+    , buttons, joysticks, getButton, getJoystick
     )
 
 {-| The Gamepad module exposes a type that lets you classify gamepads.
@@ -16,7 +16,7 @@ module Gamepad exposing
 This library aims to offer you all the functions you need.
 If it somehow doesn't, however, you may use the following functions to find what you need.
 
-@docs buttons, getButton, getJoystick
+@docs buttons, joysticks, getButton, getJoystick
 
 -}
 
@@ -52,6 +52,13 @@ connected =
 buttons : Gamepad -> List Internal.Button.Button
 buttons =
     Internal.buttons
+
+
+{-| Gets all available joysticks on the controller as one list of joysticks.
+-}
+joysticks : Gamepad -> List Internal.Joystick.Joystick
+joysticks =
+    Internal.joysticks
 
 
 {-| Get a given button at a specific location in the array of buttons.
