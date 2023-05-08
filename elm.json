@@ -3,7 +3,7 @@
     "name": "noordstar/elm-gamepad",
     "summary": "Elm library for adding game controller support",
     "license": "EUPL-1.1",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "exposed-modules": [
         "Gamepad",
         "Gamepad.Button",
