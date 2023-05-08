@@ -61,21 +61,45 @@ buttonMapping : Dict String ButtonMap
 buttonMapping =
     Dict.fromList
         [ ( "054c-05c4-Wireless Controller", standardController )
+        , ( "0810-e501-usb gamepad           "
+          , { standardController
+                | south = Just 2
+                , primary = Just 1
+                , west = Just 3
+                , secondary = Just 2
+                , tertiary = Just 0
+                , north = Just 0
+                , leftTrigger = Nothing
+                , rightTrigger = Nothing
+                , leftJoystickButton = Nothing
+                , rightJoystickButton = Nothing
+                , arrowUp = Nothing
+                , arrowLeft = Nothing
+                , arrowRight = Nothing
+                , homeButton = Nothing
+            }
+          )
+        , ( "usb gamepad            (Vendor: 0810 Product: e501)"
+          , { standardController
+            | south = Just 2
+            , primary = Just 1
+            , west = Just 3
+            , secondary = Just 2
+            , tertiary = Just 0
+            , north = Just 0
+            , leftTrigger = Nothing
+            , rightTrigger = Nothing
+            , leftJoystickButton = Nothing
+            , rightJoystickButton = Nothing
+            , arrowUp = Nothing
+            , arrowLeft = Nothing
+            , arrowRight = Nothing
+            , homeButton = Nothing
+            }
+          )
         , ( "Wireless Controller (STANDARD GAMEPAD Vendor: 054c Product: 05c4)", standardController )
-        , ( "xinput"
-          , { standardController
-                | west = Just 2
-                , east = Just 1
-                , homeButton = Nothing
-            }
-          )
-        , ( "Xbox 360 Controller (XInput STANDARD GAMEPAD)"
-          , { standardController
-                | west = Just 2
-                , east = Just 1
-                , homeButton = Nothing
-            }
-          )
+        , ( "xinput", standardController )
+        , ( "Xbox 360 Controller (XInput STANDARD GAMEPAD)", standardController )
         ]
 
 
