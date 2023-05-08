@@ -205,6 +205,7 @@ sendButtonMap gamepad map =
                     , ( "arrowLeft", .arrowLeft )
                     , ( "arrowRight", .arrowRight )
                     , ( "homeButton", .homeButton )
+                    , ( "touchpad", .touchpad )
                     ]
                         |> List.filterMap (judgeMapping map)
                         |> (\items ->

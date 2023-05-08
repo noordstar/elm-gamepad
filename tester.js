@@ -6841,6 +6841,11 @@ var $author$project$Demo$Gamepad$sendButtonMap = F2(
 								'homeButton',
 								function ($) {
 									return $.homeButton;
+								}),
+								_Utils_Tuple2(
+								'touchpad',
+								function ($) {
+									return $.touchpad;
 								})
 							]))) + ('</code></pre>\n' + ('\n' + 'I hope this will be helpful to you!'))))))))),
 				toMsg: $author$project$Demo$Gamepad$OnWebhook
